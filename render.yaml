@@ -3,12 +3,12 @@ services:
     name: atd-backend
     env: docker
     dockerfilePath: ./backend/Dockerfile
+    region: ohio  # optional
     envVars:
       - key: DATABASE_URL
         fromDatabase:
           name: atd-postgres
           property: connectionString
-    port: 8000
     autoDeploy: true
     plan: free
 
