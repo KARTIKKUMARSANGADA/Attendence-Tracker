@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: atd-backend
+    env: docker
+    dockerfilePath: ./backend/Dockerfile
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: atd-postgres
+          property: connectionString
+    port: 8000
+    autoDeploy: true
+    plan: free
+
+databases:
+  - name: atd-postgres
+    databaseName: atd_db
+    user: atd_user
+    plan: free
+
