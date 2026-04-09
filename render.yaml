@@ -3,7 +3,7 @@ services:
     name: atd-backend
     env: docker
     dockerContext: .
-    dockerfilePath: ./backend/Dockerfile
+dockerfilePath: ./Dockerfile.backend-fix
     envVars:
       - key: DATABASE_URL
         fromDatabase:
