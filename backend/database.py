@@ -1,8 +1,7 @@
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import os
-
 import logging
 
 logging.basicConfig(level=logging.INFO)
@@ -16,13 +15,17 @@ if 'postgresql' in DATABASE_URL and '?' not in DATABASE_URL:
 
 try:
     engine = create_engine(DATABASE_URL)
-    # Test connection
+
+    # ✅ Test connection
     with engine.connect() as conn:
-        conn.execute("SELECT 1")
+        conn.execute(text("SELECT 1"))
+
     logger.info("Database connected successfully")
+
 except Exception as e:
     logger.error(f"Database connection failed: {str(e)}")
     raise
+
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()
